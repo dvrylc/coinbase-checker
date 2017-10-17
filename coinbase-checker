@@ -1,16 +1,27 @@
 #!/bin/bash
 
 # BTC
+echo -e "Fetching Bitcoin prices..."
+BTCSPOT="$(curl -s -H 'CB-Version: 2017-10-17' 'https://api.coinbase.com/v2/prices/BTC-USD/spot' | python -c "import sys, json; print json.load(sys.stdin)['data']['amount']")"
 BTCBUY="$(curl -s -H 'CB-Version: 2017-10-17' 'https://api.coinbase.com/v2/prices/BTC-USD/buy' | python -c "import sys, json; print json.load(sys.stdin)['data']['amount']")"
 BTCSELL="$(curl -s -H 'CB-Version: 2017-10-17' 'https://api.coinbase.com/v2/prices/BTC-USD/sell' | python -c "import sys, json; print json.load(sys.stdin)['data']['amount']")"
-echo -e "Ƀ\t↓ ${BTCBUY}\t↑ ${BTCSELL}"
 
 # ETH
+echo -e "Fetching Ethereum prices..."
+ETHSPOT="$(curl -s -H 'CB-Version: 2017-10-17' 'https://api.coinbase.com/v2/prices/ETH-USD/spot' | python -c "import sys, json; print json.load(sys.stdin)['data']['amount']")"
 ETHBUY="$(curl -s -H 'CB-Version: 2017-10-17' 'https://api.coinbase.com/v2/prices/ETH-USD/buy' | python -c "import sys, json; print json.load(sys.stdin)['data']['amount']")"
 ETHSELL="$(curl -s -H 'CB-Version: 2017-10-17' 'https://api.coinbase.com/v2/prices/ETH-USD/sell' | python -c "import sys, json; print json.load(sys.stdin)['data']['amount']")"
-echo -e "Ξ\t↓ ${ETHBUY}\t↑ ${ETHSELL}"
 
 # LTC
+echo -e "Fetching Litecoin prices..."
+LTCSPOT="$(curl -s -H 'CB-Version: 2017-10-17' 'https://api.coinbase.com/v2/prices/LTC-USD/spot' | python -c "import sys, json; print json.load(sys.stdin)['data']['amount']")"
 LTCBUY="$(curl -s -H 'CB-Version: 2017-10-17' 'https://api.coinbase.com/v2/prices/LTC-USD/buy' | python -c "import sys, json; print json.load(sys.stdin)['data']['amount']")"
 LTCSELL="$(curl -s -H 'CB-Version: 2017-10-17' 'https://api.coinbase.com/v2/prices/LTC-USD/sell' | python -c "import sys, json; print json.load(sys.stdin)['data']['amount']")"
-echo -e "Ł\t↓ ${LTCBUY}\t\t↑ ${LTCSELL}"
+
+# Print
+echo -e "\n💵\tCurrent (USD)\tBuy (USD)\tSell (USD)"
+echo -e "Ƀ\t\$ ${BTCSPOT} \t\$ ${BTCBUY} \t\$ ${BTCSELL}"
+echo -e "Ξ\t\$ ${ETHSPOT} \t\$ ${ETHBUY} \t\$ ${ETHSELL}"
+echo -e "Ł\t\$ ${LTCSPOT} \t\$ ${LTCBUY} \t\$ ${LTCSELL}"
+
+
