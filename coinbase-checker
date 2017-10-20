@@ -16,19 +16,24 @@ def get_price(coin, currency, type):
 
 # Main function
 if __name__ == "__main__":
+  # Change to desired currency
+  # List of supported currencies: https://api.coinbase.com/v2/currencies
   currency = "USD"
   
   # BTC
   btc_buy = get_price("BTC", currency, "buy")
+  btc_spot = get_price("BTC", currency, "spot")
   btc_sell = get_price("BTC", currency, "sell")
-  print("Ƀ\t↓ {0}\t↑ {1}".format(btc_buy, btc_sell))
+  print("Ƀ\t↓ {0}\t• {1}\t↑ {2}".format(btc_buy, btc_spot, btc_sell))
 
   # ETH
   eth_buy = get_price("ETH", currency, "buy")
+  eth_spot = get_price("ETH", currency, "spot")
   eth_sell = get_price("ETH", currency, "sell")
-  print("Ξ\t↓ {0}\t↑ {1}".format(eth_buy, eth_sell))
+  print("Ξ\t↓ {0}\t• {1}\t↑ {2}".format(eth_buy, eth_spot, eth_sell))
 
   # LTC
   ltc_buy = get_price("LTC", currency, "buy")
+  ltc_spot = get_price("LTC", currency, "spot")
   ltc_sell = get_price("LTC", currency, "sell")
-  print("Ł\t↓ {0}\t\t↑ {1}".format(ltc_buy, ltc_sell))
+  print("Ł\t↓ {0}\t\t• {1}\t\t↑ {2}".format(ltc_buy, ltc_spot, ltc_sell))
