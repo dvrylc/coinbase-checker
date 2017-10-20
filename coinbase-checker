@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# Imports
+import json, urllib2
+
+# Get price of specific currency pair
+def get_price(coin, currency, type):
+  url = "https://api.coinbase.com/v2/prices/{0}-{1}/{2}".format(coin, currency, type)
+
+  req = urllib2.Request(url)
+  req.add_header("CB-VERSION", "2017-10-17")
+  price = json.load(urllib2.urlopen(req))["data"]["amount"]
+  
+  return price
+
+# Main function
+if __name__ == "__main__":
+  currency = "USD"
+  
+  # BTC
+  btc_buy = get_price("BTC", currency, "buy")
+  btc_sell = get_price("BTC", currency, "sell")
+  print("Ƀ\t↓ {0}\t↑ {1}".format(btc_buy, btc_sell))
+
+  # ETH
+  eth_buy = get_price("ETH", currency, "buy")
+  eth_sell = get_price("ETH", currency, "sell")
+  print("Ξ\t↓ {0}\t↑ {1}".format(eth_buy, eth_sell))
+
+  # LTC
+  ltc_buy = get_price("LTC", currency, "buy")
+  ltc_sell = get_price("LTC", currency, "sell")
+  print("Ł\t↓ {0}\t\t↑ {1}".format(ltc_buy, ltc_sell))
